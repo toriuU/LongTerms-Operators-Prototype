@@ -1,32 +1,31 @@
-let numberString = "2";
-let numberString2 = "2"; 
+/* Organize the many functions and variables in just a function
+    1 - understand the code and what are its fails
+    2 - simplify the code for readble
+    3 - merging the functions and variables together in just a function Somar, but you can think in future separates the functions, but now mix them, organizing, not make all of it in just a function too
+    4 - not forget to put notes and making commits in each development of mechanic in code
+*/
+let n = "2";
+let n2 = "3489535"; 
 
 let lengthString = "";
-let result = "";
 //fazendo a function de reverter usada no somar no final
 function reverter(x) {
     return x.split("").reverse().join("");
 }
-//
 
-// ajustar o lenghtstring
-//MISSÂO: fazer o ajuste aqui de x e y para o que faltar ter igualmente o valor do maior, adicionando 0s o ínicio daquele com falta
-function larguraSomarEAjustar(x, y) {
-    if (Number(x.length) == Number(y.length)) {
+function somar(x, y) {
+
+    //largurasomareajustar
+    if (x.length == y.length) {
         lengthString = x.length;
     } else if (x.length > y.length) {
         lengthString = x.length;
-        numberString2 = "0".repeat(lengthString - numberString2.length) + numberString2;
+        y = "0".repeat(lengthString - y.length) + y;
     } else if (y.length > x.length) {
         lengthString = y.length;
-        numberString = "0".repeat(lengthString - numberString.length) + numberString;
-    }
-}
+        x = "0".repeat(lengthString - x.length) + x;
+    };
 
-larguraSomarEAjustar(numberString, numberString2);
-//
-
-function somar(x, y) {
     //declarando variaveis locais
     let sum = "";
     let sumTwoDigitRest = 0; 
@@ -56,9 +55,7 @@ function somar(x, y) {
             };
         };
     };
-    result = reverter(sum);
+    return reverter(sum);
 };
 
-somar(numberString, numberString2);
-
-console.log(`With Function: ${numberString} + ${numberString2} = ${result}`, "\n",  `Without Function: ${numberString} + ${numberString2} = ${Number(numberString) + Number(numberString2)}`);
+console.log(`With Function: ${n} + ${n2} = ${somar(n, n2)}`, "\n",  `Without Function: ${n} + ${n2} = ${Number(n) + Number(n2)}`);
