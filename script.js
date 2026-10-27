@@ -1,9 +1,3 @@
-/* Organize the many functions and variables in just a function
-    1 - understand the code and what are its fails
-    2 - simplify the code for readble
-    3 - merging the functions and variables together in just a function Somar, but you can think in future separates the functions, but now mix them, organizing, not make all of it in just a function too
-    4 - not forget to put notes and making commits in each development of mechanic in code
-*/
 let number = "2342342342349999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999991";
 let number2 = "1"; 
 
