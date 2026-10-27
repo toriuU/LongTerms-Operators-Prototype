@@ -4,61 +4,47 @@
     3 - merging the functions and variables together in just a function Somar, but you can think in future separates the functions, but now mix them, organizing, not make all of it in just a function too
     4 - not forget to put notes and making commits in each development of mechanic in code
 */
-let n = "654";
-let n2 = "546"; 
+let number = "2342342342349999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999991";
+let number2 = "1"; 
 
-let lengthString = "";
-
-//fazendo a function de reverter usada no somar no final
-function reverter(x) {
+function reverterString(x) {
     return x.split("").reverse().join("");
 }
 
+// medo de o (lenghtString - y/x.lenght) dar um valor alto demais e comprometer a precisão
+
 function somar(x, y) {
 
-    //largurasomareajustar
-    if (x.length == y.length) {
-        lengthString = x.length;
-    } else if (x.length > y.length) {
-        lengthString = x.length;
-        y = "0".repeat(lengthString - y.length) + y;
-    } else if (y.length > x.length) {
-        lengthString = y.length;
-        x = "0".repeat(lengthString - x.length) + x;
-    };
+    let lengthString = Math.max(x.lenght, y.length);
+    //ajustando o lenghtstring
+    x = x.padStart(lengthString, "0");
+    y = y.padStart(lengthString, "0");
 
     //declarando variaveis locais
-    let sum = "";
-    let sumTwoDigitRest = 0; 
-    let xn;
-    let yn;
-    let xys;
-    for (i = lengthString; i > 0; i--) {
-        xn = Number(x[i-1]);
-        yn = Number(y[i-1]);
-        xys = String(xn + yn + sumTwoDigitRest);
-        if (xys.length == "1") {
-            //somara normalmente se for 1 de largura o numero junto com  o resto da dezena do outro calculo
-            sum += xys;
-            //reiniciara a contagem do resto porque não tem resto, definindo-o para zero
-            sumTwoDigitRest = 0;
+    let sum = ""; // o conjunto dos resultados
+    let sumRest = 0; // o resto da operação das casas
+    let sumXYRest;
 
-        } else if (xys.length == "2") {
-            if (i == 1) {
-                //nessa condição verifica se for a ultima unidade (ouseja a primeira, tipo 1 em 1234), apra assim não ter que colcocar o negocio novamente  
-                sum += reverter(xys);
-   
-                //reverter pois é um resultado ordenado, pois aqui a ordem vai da unidade ate a ultima casa, aqui ja segue a ultima casa (dezena) até a unidade, o que faz que termos que reverter o resultado
-                sumTwoDigitRest = 0;
+    // conta de soma por casa
+    for (i = lengthString; i > 0; i--) {
+        sumXYRest = String(Number(x[i-1]) + Number(y[i-1]) + sumRest); // soma do resto das casas de unidades equivalentes
+        if (sumXYRest.length == "1") { // se houver somente uma unidade resultante
+            sum += sumXYRest;
+            sumRest = 0;
+
+        } else if (sumXYRest.length == "2") { // se houver uma dezena como resultante
+            if (i == 1) { // último da contagem
+                sum += reverterString(sumXYRest); 
+                sumRest = 0;
             } else {
-                //ele somara o resto com as unidades feitas e reconhecerá somente a unidade do novo numero já que o numero tem 2 unidades de largura
-                sum += xys[1];
-                //em qualquer soma de de duas unidades de uma largura será menos de 20 então passara 1 para a proxima conta
-                sumTwoDigitRest = 1;
+                sum += sumXYRest[1];
+                sumRest = 1;
             };
         };
     };
-    return reverter(sum);
+    return reverterString(sum); // a soma é feita ao contrário como for. reverter para ver o resultado
 };
 
-console.log(`With Function: ${n} + ${n2} = ${somar(n, n2)}`, "\n",  `Without Function: ${n} + ${n2} = ${Number(n) + Number(n2)}`);
+console.log(`Wf: ${number} + ${number2} = ${somar(number, number2)}`,
+ "\n",   
+ `Wof: ${number} + ${number2} = ${Number(number) + Number(number2)}`);
