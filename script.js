@@ -9,7 +9,7 @@ function reverterString(x) {
 
 function somar(x, y) {
 
-    let lengthString = Math.max(x.lenght, y.length);
+    let lengthString = Math.max(x.length, y.length);
     //ajustando o lenghtstring
     x = x.padStart(lengthString, "0");
     y = y.padStart(lengthString, "0");
